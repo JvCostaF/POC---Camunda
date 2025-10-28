@@ -1,0 +1,10 @@
+camunda.bpm.admin-user:
+  id: admin
+  password: admin
+
+camunda:
+  bpm:
+    job-execution:
+      enabled: true
+    external-task:
+      enabled: true
