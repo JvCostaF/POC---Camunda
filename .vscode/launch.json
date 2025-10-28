@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<primeiro-projeto-camunda>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.examplo.primeiro.Application",
+            "projectName": "primeiro-projeto-camunda",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

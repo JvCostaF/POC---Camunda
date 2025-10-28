@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.33.1">
+  <bpmn:process id="primeiro-projeto-camunda-process" isExecutable="true" camunda:historyTimeToLive="180">
+    <bpmn:startEvent id="Event_0zvuth4">
+      <bpmn:outgoing>Flow_1ir700q</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1ts3ru1">
+      <bpmn:incoming>Flow_0gywmsb</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1ir700q" sourceRef="Event_0zvuth4" targetRef="Activity_12mi0js" />
+    <bpmn:sequenceFlow id="Flow_0vy0ecx" sourceRef="Activity_0fl0tb9" targetRef="Activity_1gzvxno" />
+    <bpmn:userTask id="Activity_1gzvxno" name="Formulario com Resultado">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="resultado" label="Resultado" type="long">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0vy0ecx</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gywmsb</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0gywmsb" sourceRef="Activity_1gzvxno" targetRef="Event_1ts3ru1" />
+    <bpmn:userTask id="Activity_12mi0js" name="Formulario da Calculadora">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="a" label="A" type="long" />
+          <camunda:formField id="b" label="B" type="long" />
+          <camunda:formField id="operacao" label="Operacao" type="enum">
+            <camunda:value id="Soma" name="Soma" />
+            <camunda:value id="Subtracao" name="Subtracao" />
+            <camunda:value id="Multiplicacao" name="Multiplicacao" />
+            <camunda:value id="Divisao" name="Divisao" />
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ir700q</bpmn:incoming>
+      <bpmn:outgoing>Flow_1dsi1tg</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_0fl0tb9" name="Calculadora" camunda:type="external" camunda:topic="calculadora">
+      <bpmn:incoming>Flow_1dsi1tg</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vy0ecx</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1dsi1tg" sourceRef="Activity_12mi0js" targetRef="Activity_0fl0tb9" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="primeiro-projeto-camunda-process">
+      <bpmndi:BPMNShape id="Event_0zvuth4_di" bpmnElement="Event_0zvuth4">
+        <dc:Bounds x="152" y="122" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ts3ru1_di" bpmnElement="Event_1ts3ru1">
+        <dc:Bounds x="892" y="122" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0oha9at_di" bpmnElement="Activity_1gzvxno">
+        <dc:Bounds x="740" y="100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ff23cp_di" bpmnElement="Activity_12mi0js">
+        <dc:Bounds x="240" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ojo0nj_di" bpmnElement="Activity_0fl0tb9">
+        <dc:Bounds x="500" y="100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1ir700q_di" bpmnElement="Flow_1ir700q">
+        <di:waypoint x="188" y="140" />
+        <di:waypoint x="240" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vy0ecx_di" bpmnElement="Flow_0vy0ecx">
+        <di:waypoint x="600" y="140" />
+        <di:waypoint x="740" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gywmsb_di" bpmnElement="Flow_0gywmsb">
+        <di:waypoint x="840" y="140" />
+        <di:waypoint x="892" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dsi1tg_di" bpmnElement="Flow_1dsi1tg">
+        <di:waypoint x="340" y="140" />
+        <di:waypoint x="500" y="140" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
